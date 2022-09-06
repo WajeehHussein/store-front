@@ -1,50 +1,26 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { DataContext } from '../context/data';
 import { Button, Card } from 'react-bootstrap';
-import apple from '../assets/apple.jpg';
-import { v4 as uuidv4 } from 'uuid';
+import { NavLink } from 'react-router-dom';
+export const Categories = () => {
+    const data = useContext(DataContext);
 
-export const Products = () => {
-    const [data, setData] = useState([
-        { name: 'apple', image: { apple }, type: 'food', price: '3$', id: uuidv4() },
-        { name: 'pizza', image: '', type: 'food', price: '10$', id: uuidv4() },
-        { name: 'tomato', image: '', type: 'food', price: '5$', id: uuidv4() },
-
-        { name: 'TV', image: '', type: 'electronic', price: '100$', id: uuidv4() },
-        { name: 'PS', image: '', type: 'electronic', price: '500$', id: uuidv4() },
-        { name: 'cell phone', image: '', type: 'electronic', price: '150$', id: uuidv4() },
-
-        { name: 'fifa', image: '', type: 'game', price: '50$', id: uuidv4() },
-        { name: 'LOL', image: '', type: 'game', price: '20$', id: uuidv4() },
-        { name: 'PUPG', image: '', type: 'game', price: '10$', id: uuidv4() },
-    ]);
     const [filter, setFilter] = useState([]);
-    const [loading, setLoading] = useState(false);
 
-    // useEffect(() => {
-    //     setLoading(true)
-    //     if (show) {
-    //         setLoading(false)
-    //     }
-    // })
-    // const Loading = () => {
-    //     return (
-    //         <>
-    //             <Spinner animation="border" role="status">
-    //                 <span className="visually-hidden">Loading...</span>
-    //             </Spinner>
-    //         </>
-    //     )
-    // }
     const filerProducts = (item) => {
-        const items = data.filter(x => x.type === item);
+        const items = data.data.filter(x => x.type === item);
         setFilter(items);
+    }
+    const showDetails = (product) => {
+        const item = data.data.filter((ele) => ele.id === product);
+        data.setData(item)
     }
     const ShowProducts = () => {
         return (
             <>
 
                 <div className='d-flex justify-content-center'>
-                    <Button className='me-2' variant="dark" onClick={() => setFilter(data)}>All</Button>
+                    <Button className='me-2' variant="dark" onClick={() => setFilter(data.data)}>All</Button>
                     <Button className='me-2' variant="dark" onClick={() => filerProducts('food')}>food</Button>
                     <Button className='me-2' variant="dark" onClick={() => filerProducts('electronic')}>electronic</Button>
                     <Button className='me-2' variant="dark" onClick={() => filerProducts('game')}>game</Button>
@@ -61,8 +37,11 @@ export const Products = () => {
                                         <Card.Text className='lead fw-bold'>
                                             Price: {item.price}
                                         </Card.Text>
-                                        <Button variant="success" className='m-1'>Add to cart</Button>
-                                        <Button variant="dark">Show details</Button>
+                                        <div className='d-flex align-items-center'>
+                                            <Button variant="success" className='m-1'>Add to cart</Button>
+                                            <NavLink to={`/product/${item.id}`}><Button variant='dark' onClick={() => showDetails(item.id)}>Show details</Button> </NavLink>
+                                        </div>
+
                                     </Card.Body>
                                 </Card>
                             </React.Fragment>
