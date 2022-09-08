@@ -15,7 +15,6 @@ function App() {
           <Route path="/" element={<Categories />} />
           <Route path="/product/:id" element={<Product />} />
         </Routes>
-        {/* <Products /> */}
       </Router>
     </Data>
 
