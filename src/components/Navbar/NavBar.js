@@ -9,7 +9,7 @@ function NavBar() {
                 <Container>
                     <Navbar.Brand className='brand' href="/">My Store</Navbar.Brand>
                     <Nav>
-                        <Nav.Link className='nav' href="/Cart"><Button variant="outline-dark">Cart</Button></Nav.Link>
+                        <Nav.Link className='nav' href="/cart"><Button variant="outline-dark">Cart</Button></Nav.Link>
 
                     </Nav>
                 </Container>
