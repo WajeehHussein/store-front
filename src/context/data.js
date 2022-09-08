@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
+import apple from '../assets/apple.jpg';
 import { v4 as uuidv4 } from 'uuid';
 export const DataContext = React.createContext();
-
 export default function Data(props) {
     const [data, setData] = useState([
-        { name: 'apple', image: 'https://fruityland.co/wp-content/uploads/2021/01/Granny-smith-green-apple-FL.jpg', type: 'food', price: '3$', id: uuidv4() },
+        { name: 'apple', image: { apple }, type: 'food', price: '3$', id: uuidv4() },
         { name: 'pizza', image: 'https://www.arhavirestaurantbatumi.com/wp-content/uploads/2021/05/classic-homemade-pizza-dough-close.jpg', type: 'food', price: '10$', id: uuidv4() },
         { name: 'tomato', image: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Tomato_je.jpg', type: 'food', price: '5$', id: uuidv4() },
 
