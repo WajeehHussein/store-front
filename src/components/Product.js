@@ -14,7 +14,7 @@ function Product() {
         return (
             <>
                 <div className='col-md-6'>
-                    <img src={data.data.image} alt={data.data.name} />
+                    <img src={data.data[0].image} alt={data.data[0].name} />
                 </div>
             </>
         )
