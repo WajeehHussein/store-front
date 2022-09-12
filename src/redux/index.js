@@ -1,14 +1,13 @@
 import handleCart from "./reducer";
 import { combineReducers, createStore, applyMiddleware } from "redux";
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from './middlewares/thunk'
+import thunk from 'redux-thunk'
 const reducers = combineReducers({ handleCart });
 
 const store = () => {
-    return createStore(reducers, {}, applyMiddleware(thunk));
+    return createStore(reducers);
 }
 
-export default store;
+export default store();
 
 
 
