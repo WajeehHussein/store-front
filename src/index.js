@@ -11,8 +11,8 @@ import Data from './context/data';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <Provider store={store} context={Data}>
-  <App />
+  <Provider store={store} context={Data}>
+    <App />
+  </Provider >
 );
-{/* </Provider > */ }
 

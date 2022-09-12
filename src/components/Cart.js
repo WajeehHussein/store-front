@@ -1,5 +1,4 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 
 function Cart() {
     // const state = useSelector(state => state.handleCart)

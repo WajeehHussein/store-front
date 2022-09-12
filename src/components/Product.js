@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addCart } from '../redux/action'
+import { addCart } from '../redux/action';
 import React, { useContext } from 'react';
 import { Nav } from 'react-bootstrap';
 import { DataContext } from '../context/data';
@@ -7,9 +7,8 @@ import { DataContext } from '../context/data';
 
 function Product() {
     const data = useContext(DataContext);
-
-
     const ShowProduct = (props) => {
+        console.log('data.data[0]', data.data[0]);
         return (
             <>
                 <div className='col-md-6 container'>
@@ -20,7 +19,7 @@ function Product() {
                     <h1 className='display-5'>{data.data[0].name}</h1>
                     <p className='lead fw-bolder'>Price {data.data[0].price}</p>
                     <div className='d-flex '>
-                        <button className='btn btn-outline-dark' >Add to Cart</button>
+                        <button className='btn btn-outline-dark' onClick={() => props.addCart(data.data[0].id)}>Add to Cart {props.myCounter}</button>
                         <Nav.Link className='nav' href="/cart">
                             <button className='btn btn-dark ms-5 px-3 py-2' >Go to cart</button>
                         </Nav.Link>
@@ -38,12 +37,12 @@ function Product() {
     )
 }
 
-// const mapStateToProps = (state) => ({
-//     myCounter: state,
+const mapStateToProps = (state) => ({
+    myCounter: state.cart,
 
-// })
+})
 
-// const mapDispatchToProps = { addCart };
+const mapDispatchToProps = { addCart };
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Product);
-export default Product;
+export default connect(mapStateToProps, mapDispatchToProps)(Product);
+// export default Product;
